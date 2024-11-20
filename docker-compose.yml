@@ -1,0 +1,94 @@
+version: '3.9'
+services:
+  glpi_app:
+    image: sdbrasil/glpi:10.0.17
+    container_name: glpi-10
+    volumes:
+      - glpi_config:/etc/glpi
+      - glpi_documents:/var/lib/glpi/files/data-documents
+      - glpi_plugins:/usr/share/glpi/plugins
+      - glpi_marketplace:/usr/share/glpi/marketplace
+      - glpi_files_plugins:/var/lib/glpi/files/_plugins
+      - glpi_backup:/backup
+    networks:
+      - glpi
+    ports:
+      - 80:80
+
+  glpidb:
+    image: percona/percona-server:8.0
+    container_name: db-glpi-10
+    cap_add:
+      - SYS_NICE
+    networks:
+      - glpi
+    volumes:
+      - glpi_db_log:/var/log/mysql
+      - glpi_db_lib:/var/lib/mysql
+      - glpi_db_backup:/backup
+    environment:
+      - MYSQL_ROOT_PASSWORD=ADM@MySQL_GLP1
+      - MYSQL_DATABASE=glpi
+      - MYSQL_USER=glpi
+      - MYSQL_PASSWORD=GLP1_MySQL@10
+      - TZ=America/Sao_Paulo
+
+networks:
+  glpi:
+    driver: bridge
+
+volumes:
+  glpi_config:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/glpi/etc
+      o: bind
+  glpi_documents:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/glpi/documents
+      o: bind
+  glpi_plugins:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/glpi/plugins
+      o: bind
+  glpi_marketplace:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/glpi/marketplace
+      o: bind
+  glpi_files_plugins:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/glpi/_plugins
+      o: bind
+  glpi_backup:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/glpi/backup
+      o: bind
+  glpi_db_log:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/log/glpi
+      o: bind
+  glpi_db_lib:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/glpi/percona-lib
+      o: bind
+  glpi_db_backup:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/glpi/backup
+      o: bind
