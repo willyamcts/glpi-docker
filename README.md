@@ -5,8 +5,16 @@ The test running in Debian, using Docker [image from ServiceDesk Brasil](https:/
 
 
 ## Considerations
- * All data is saved in mapped directories ??
+ * All data is saved in mapped directories (see prepare.sh)
  * Other project to view: https://hub.docker.com/r/diouxx/glpi
+
+
+## Usage
+
+1. Clone this repository and entry in directory
+2. Set execution permission in `prepare.sh`
+3. Run `./prepare.sh`
+4. Run `docker compose up -d`
 
 
 ## GLPI Agent
