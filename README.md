@@ -11,12 +11,20 @@ The test running in Debian, using Docker [image from ServiceDesk Brasil](https:/
 
 
 ## Usage
-
 1. Clone this repository and entry in directory
 2. Set execution permission to `prepare.sh` with `chmod +x prepare.sh`
 3. Run `./prepare.sh`
-4. Paste your certificate and key file in `$GLPI_PATH/etc/httpd/ssl` directory
-5. Run `docker compose up -d`
+4. Paste your certificate and key file in `/usr/local/glpi/etc/httpd/ssl` directory.
+   * The name cert should `cert.crt` and key file `key.key`
+6. Run `docker compose up -d`
+7. Access web `https://<IP> `
+8. In "step 1" from settings, insert information about database. After, select database `glpi`
+    * address: `db-glpi-10` (field `container_name` from docker-compose)
+    * user: `glpi` (field `MYSQL_USER` from docker-compose)
+    * password: <field `MYSQL_PASSWORD` from docker-compose>
+9. After finishing the installation, run the command `docker exec -it glpi-10 rm /usr/share/glpi/install/install.php`
+10. Finished, good work.
+
 
 
 
