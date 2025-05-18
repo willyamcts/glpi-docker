@@ -11,12 +11,14 @@ services:
       - /usr/local/glpi/plugins:/usr/share/glpi/plugins
       - /usr/local/glpi/backup:/backup
       - /usr/local/glpi/log:/var/log/glpi
-      - /usr/local/glpi/etc/httpd/httpd.conf:/etc/httpd/conf/httpd.conf
       - /usr/local/glpi/etc/httpd/glpi.conf:/etc/httpd/conf.d/glpi.conf
+      - /usr/local/glpi/etc/httpd/ssl:/etc/httpd/ssl
+      - /usr/local/glpi/etc/httpd/modules/mod_ssl.so:/etc/httpd/modules/mod_ssl.so
+      - /usr/local/glpi/etc/php.ini:/etc/php.ini
     networks:
       - glpi
     ports:
-      - 80:80
+      - 443:443
 
   glpidb:
     image: percona/percona-server:8.0
