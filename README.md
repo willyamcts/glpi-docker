@@ -1,11 +1,12 @@
 # GLPI Implementation
 
 ## Environment
-The test running in Debian, using Docker [image from ServiceDesk Brasil](https://hub.docker.com/r/sdbrasil/glpi) where is compose from GLIP + PHP + MySQL database
+The test running in Debian, using Docker [image from ServiceDesk Brasil](https://hub.docker.com/r/sdbrasil/glpi) where is compose from GLIP + PHP + Percona database (MySQL)
 
 
 ## Considerations
  * All data is saved in mapped directories (see prepare.sh)
+ * Running on HTTPS, i.e. SSL certificate is required
  * Other project to view: https://hub.docker.com/r/diouxx/glpi
 
 
