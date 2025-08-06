@@ -8,7 +8,7 @@ services:
       - /usr/local/glpi/var/_plugins:/var/lib/glpi/files/_plugins
       - /usr/local/glpi/etc/glpi:/etc/glpi
       - /usr/local/glpi/var/documents:/var/lib/glpi/files/data-documents
-      - /usr/local/glpi/plugins:/usr/share/glpi/plugins
+      - /usr/local/glpi/var/plugins:/usr/share/glpi/plugins
       - /usr/local/glpi/backup:/backup
       - /usr/local/glpi/log:/var/log/glpi
       - /usr/local/glpi/etc/httpd/glpi.conf:/etc/httpd/conf.d/glpi.conf
